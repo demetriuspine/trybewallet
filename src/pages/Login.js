@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { saveEmail } from '../actions';
+import './Login.css';
 
 const PASSWORD_LIMIT = 6;
 
@@ -33,44 +33,57 @@ class Login extends React.Component {
 
   render() {
     const { email, password } = this.state;
-    const { emailToGlobalState } = this.props;
+    const { emailToGlobalState, history } = this.props;
+    const handleCLick = (emailFromState) => {
+      emailToGlobalState(emailFromState);
+      history.push('/carteira');
+    };
     return (
-      <form>
-        <label htmlFor="email-input">
-          Email
-          <input
-            type="email"
-            name="email"
-            value={ email }
-            onChange={ this.handleChange }
-            data-testid="email-input"
-          />
-        </label>
-        <label htmlFor="password-input">
-          Senha
-          <input
-            type="password"
-            name="password"
-            value={ password }
-            onChange={ this.handleChange }
-            data-testid="password-input"
-          />
-        </label>
-        <Link to="/carteira" onClick={ () => emailToGlobalState(email) }>
+      <section className="general-container">
+        <form className="lgn-container">
+          <label htmlFor="email-input">
+            <input
+              className="form-control"
+              placeholder="Email"
+              type="email"
+              name="email"
+              value={ email }
+              onChange={ this.handleChange }
+              data-testid="email-input"
+            />
+          </label>
+          <label htmlFor="password-input">
+            <input
+              className="form-control"
+              placeholder="Senha"
+              type="password"
+              name="password"
+              value={ password }
+              onChange={ this.handleChange }
+              data-testid="password-input"
+            />
+          </label>
           <button
             type="button"
-            disabled={ !this.emailValidation(email) || password.length < PASSWORD_LIMIT }
+            disabled={
+              !this.emailValidation(email) || password.length < PASSWORD_LIMIT
+            }
+            className="btn btn-success"
+            onClick={ () => handleCLick(email) }
           >
             Entrar
           </button>
-        </Link>
-      </form>
+        </form>
+      </section>
     );
   }
 }
 
 Login.propTypes = {
   emailToGlobalState: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => (

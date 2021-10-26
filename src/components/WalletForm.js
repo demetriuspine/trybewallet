@@ -93,7 +93,7 @@ class WalletForm extends Component {
 
   ButtonElement(func) {
     return (
-      <button type="button" onClick={ func }>
+      <button type="button" onClick={ func } className="btn btn-success">
         Adicionar despesa
       </button>
     );

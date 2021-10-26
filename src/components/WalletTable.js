@@ -10,7 +10,7 @@ const tableHeader = ['Descrição',
   'Câmbio utilizado',
   'Valor convertido',
   'Moeda de conversão',
-  'Editar/Excluir',
+  'Excluir',
 ];
 
 class WalletTable extends Component {
@@ -20,7 +20,7 @@ class WalletTable extends Component {
       idToBeDispatched(id);
     };
     return ( // adaptado do site https://edrodrigues.com.br/blog/criando-tabelas-com-filtros-%E2%80%8B%E2%80%8Busando-react/
-      <table border="1">
+      <table className="table table-bordered">
         { /* https://web.fe.up.pt/~goii2000/M7/T2_tabela.htm */ }
         <thead>
           <tr>
@@ -46,6 +46,7 @@ class WalletTable extends Component {
                     type="button"
                     data-testid="delete-btn"
                     onClick={ () => handleClick(expense.id) }
+                    className="btn btn-danger"
                   >
                     Excluir
                   </button>

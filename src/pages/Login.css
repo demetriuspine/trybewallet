@@ -1,0 +1,24 @@
+.lgn-container {
+  background-color: rgb(245, 246, 253);
+  border: 0 solid #afafaf;
+  border-radius: 10px;
+  box-shadow: 0 0 8px #777;
+  display: flex;
+  flex-direction: column;
+  height: 20rem;
+  justify-content: space-evenly;
+  padding: 8vh;
+}
+
+.general-container {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.btn-link {
+  display: flex;
+  justify-content: center;
+}
+
